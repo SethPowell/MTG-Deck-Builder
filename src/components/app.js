@@ -28,6 +28,13 @@ export default class App extends Component {
 
 						<Switch>
 							<Route exact path="/" component={Home} />
+							<Route exact path="/account" component={Account} />
+							<Route exact path="/login" component={LogIn} />
+							<Route
+								exact
+								path="/deckbuilder"
+								component={DeckBuilder}
+							/>
 						</Switch>
 					</div>
 				</Router>
