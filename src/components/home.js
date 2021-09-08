@@ -5,7 +5,7 @@ export default class Home extends Component {
 		super(props);
 
 		this.state = {
-			loggedInStatus: "NOT_LOGGED_IN",
+			loggedInStatus: "NOT_LOGGED_IN"
 		};
 	}
 
@@ -13,9 +13,16 @@ export default class Home extends Component {
 		return (
 			<div className="home-wrapper">
 				Welcome to Leak's Deck Builder for Magic the Gathering *
+				<div className="decks-wrapper">
+					Just a list of most popular decks
+				</div>
+				<div className="popular-cards-wrapper">
+					the three most common cards in all decks in the db
+					*excluding basics* will go here
+				</div>
 				<h6>
-					* Not endorsed, sponsored, or in affiliation with/by wizards
-					of the coast
+					* Not endorsed by, sponsored by, or in any way affiliated
+					with wizards of the coast
 				</h6>
 			</div>
 		);

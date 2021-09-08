@@ -8,6 +8,24 @@ export default class NavBar extends Component {
 	}
 
 	render() {
-		return <div className="nav-bar-wrapper">Nav Bar Wrapper</div>;
+		return (
+			<div className="nav-bar-wrapper">
+				<div className="search-bar-wrapper">
+					<input
+						type="text"
+						placeholder="Search"
+						className="search-bar"
+					/>
+				</div>
+				<div className="left-buttons">
+					<button className="all-decks" onClick={getAllDecks}>
+						All Decks
+					</button>
+				</div>
+				<div className="user-buttons">
+					<button className="account">My Account</button>
+				</div>
+			</div>
+		);
 	}
 }
