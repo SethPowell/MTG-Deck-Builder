@@ -8,11 +8,18 @@ export default class Home extends Component {
 
 		this.state = {
 			loggedInStatus: "NOT_LOGGED_IN",
-			searchInput: ""
+			searchInput: "",
+			loading: true
 		};
 
 		this.handleSearch = this.handleSearch.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+	}
+
+	componentDidMount() {
+		// this.setState({
+		// 	loading: false
+		// });
 	}
 
 	handleSearch(event) {
@@ -21,17 +28,15 @@ export default class Home extends Component {
 				this.state.searchInput
 			)}`
 		);
-		fetch(
-			`https://scryfall.com/search?q=${encodeURIComponent(
-				`${this.state.searchInput}`
-			)}`,
-			{
-				method: "GET",
-				headers: {
-					"Content-type": "appication/json"
-				}
+		let url = `https://scryfall.com/search?q=${encodeURI(
+			`!${this.state.searchInput}`
+		)}`;
+		fetch(url, {
+			method: "GET",
+			headers: {
+				"Content-type": "appication/json"
 			}
-		)
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
@@ -53,7 +58,6 @@ export default class Home extends Component {
 				<div className="nav-bar-wrapper">
 					<NavBar />
 				</div>
-
 				<div className="home-wrapper">
 					<h2>
 						Welcome to Leak's Deck Builder for Magic the Gathering *

@@ -25,7 +25,11 @@ export default class App extends Component {
 				<Router>
 					<div className="inner-router-wrapper">
 						<Switch>
-							<Route exact path="/" component={Home} />
+							<Route
+								exact
+								path="/"
+								render={(props) => <Home {...props} />}
+							/>
 							<Route
 								exact
 								path="/account"
