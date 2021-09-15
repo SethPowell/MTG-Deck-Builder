@@ -4,18 +4,6 @@
 	align-items: center;
 	justify-content: center;
 
-	.nav-bar-wrapper {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-		padding: 10px;
-
-		button {
-			margin: 5px;
-		}
-	}
-
 	.search-wrapper {
 		display: flex;
 		flex-direction: row;
@@ -31,7 +19,7 @@
 		button {
 			height: 11vh;
 			font-size: 2em;
-			width: 15vw;
+			width: 20vw;
 		}
 	}
 
@@ -44,9 +32,13 @@
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
-		height: 99vh;
+		height: 90vh;
 	}
 
 	h6 {
 	}
+}
+
+body {
+	margin: 0px;
 }

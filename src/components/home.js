@@ -55,7 +55,7 @@ export default class Home extends Component {
 	render() {
 		return (
 			<div className="page-wrapper">
-				<div className="nav-bar-wrapper">
+				<div className="nav-bar-container">
 					<NavBar />
 				</div>
 				<div className="home-wrapper">
@@ -67,7 +67,7 @@ export default class Home extends Component {
 							<input type="text" onChange={this.handleChange} />
 						</form>
 						<button type="submit" onClick={this.handleSearch}>
-							Search
+							Search Decks
 						</button>
 					</div>
 					<div className="decks-wrapper">

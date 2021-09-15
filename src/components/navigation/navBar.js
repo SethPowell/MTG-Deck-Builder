@@ -1,8 +1,15 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
+
+import Icons from "../helpers/icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class NavBar extends Component {
 	constructor(props) {
 		super(props);
+
+		Icons();
 
 		this.state = {};
 
@@ -28,22 +35,21 @@ export default class NavBar extends Component {
 							placeholder="Search"
 							className="search-bar"
 						/>
-						<button type="submit">Search</button>
+						<button type="submit">
+							<FontAwesomeIcon icon="search" />
+						</button>
 					</form>
 				</div>
 				<div className="buttons-wrapper">
 					<div className="left-buttons">
-						<button
-							className="all-decks"
-							onClick={this.getAllDecks}
-						>
+						<NavLink to="/allDecks" className="navlink">
 							All Decks
-						</button>
+						</NavLink>
 					</div>
 					<div className="user-buttons">
-						<button className="account" onClick={this.changeRoute}>
-							My Account
-						</button>
+						<NavLink to="/account" className="navlink">
+							<FontAwesomeIcon icon="user" />
+						</NavLink>
 					</div>
 				</div>
 			</div>
