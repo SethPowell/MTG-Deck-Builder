@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import Icons from "../helpers/icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -17,6 +18,14 @@ export default class NavBar extends Component {
 
 		this.getAllDecks = this.getAllDecks.bind(this);
 		this.changeRoute = this.changeRoute.bind(this);
+	}
+
+	componentDidMount() {
+		if (Cookies.get("user")) {
+			this.setState({
+				user: true
+			});
+		}
 	}
 
 	changeRoute(event) {
