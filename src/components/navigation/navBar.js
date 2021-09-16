@@ -11,7 +11,9 @@ export default class NavBar extends Component {
 
 		Icons();
 
-		this.state = {};
+		this.state = {
+			user: false
+		};
 
 		this.getAllDecks = this.getAllDecks.bind(this);
 		this.changeRoute = this.changeRoute.bind(this);
@@ -47,7 +49,10 @@ export default class NavBar extends Component {
 						</NavLink>
 					</div>
 					<div className="user-buttons">
-						<NavLink to="/account" className="navlink">
+						<NavLink
+							to={this.state.user ? "/account" : "/login"}
+							className="navlink"
+						>
 							<FontAwesomeIcon icon="user" />
 						</NavLink>
 					</div>

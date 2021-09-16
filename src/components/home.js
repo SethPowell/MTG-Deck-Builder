@@ -7,9 +7,10 @@ export default class Home extends Component {
 		super(props);
 
 		this.state = {
-			loggedInStatus: "NOT_LOGGED_IN",
 			searchInput: "",
-			loading: true
+			loading: true,
+			card: null,
+			user: false
 		};
 
 		this.handleSearch = this.handleSearch.bind(this);
@@ -28,9 +29,9 @@ export default class Home extends Component {
 				this.state.searchInput
 			)}`
 		);
-		let url = `https://scryfall.com/search?q=${encodeURI(
+		let url = `https://api.scryfall.com/cards/named?exact=${encodeURI(
 			`!${this.state.searchInput}`
-		)}`;
+		)}&pretty=true`;
 		fetch(url, {
 			method: "GET",
 			headers: {
@@ -40,6 +41,9 @@ export default class Home extends Component {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+				this.setState({
+					card: data
+				});
 			})
 			.catch((error) => {
 				console.log("error with scryfall request: ", error);
@@ -67,8 +71,21 @@ export default class Home extends Component {
 							<input type="text" onChange={this.handleChange} />
 						</form>
 						<button type="submit" onClick={this.handleSearch}>
-							Search Decks
+							Search Cards
 						</button>
+						{this.state.card ? (
+							<div className="search-result-wrapper">
+								<h3>{this.state.card.name}</h3>
+								<img
+									className="card-image"
+									src={this.state.card.image_uris.normal}
+									alt={this.state.card.name}
+								/>
+								<h5>{this.state.card.oracle_text}</h5>
+							</div>
+						) : (
+							<div>Results will appear here.</div>
+						)}
 					</div>
 					<div className="decks-wrapper">
 						Just a list of most popular decks

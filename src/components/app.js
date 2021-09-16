@@ -12,8 +12,8 @@ import Home from "./home";
 import AllDecks from "./browse-pages/allDecks";
 
 export default class App extends Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 
 		Icons();
 

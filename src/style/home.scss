@@ -35,7 +35,15 @@
 		height: 90vh;
 	}
 
-	h6 {
+	.search-result-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.card-image {
+		height: 40vh;
 	}
 }
 
