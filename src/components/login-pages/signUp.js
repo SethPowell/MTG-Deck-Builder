@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Cookies from "js-cookie";
 
 export default class SignUp extends Component {
 	constructor(props) {
@@ -6,33 +7,61 @@ export default class SignUp extends Component {
 
 		this.state = {
 			username: "",
-			password: "",
-			passwordConfirm: "",
 			error: ""
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.generateColor = this.generateColor.bind(this);
 	}
+
+	generateColor = function () {
+		hex = "0123456789abcdefABCDEF";
+		randomList = "#";
+		for (i = 0; i < 6; i++) {
+			random = hex[Math.floor(Math.random() * hex.length)];
+			randomList += random;
+		}
+		return randomList;
+	};
 
 	handleSubmit(event) {
 		event.preventDefault();
+		console.log(event.target);
+		console.log(event.target.password.value);
+
+		let password = event.target.password.value;
+		let passwordConfirm = event.target.passwordConfirm.value;
+
+		const generateColor = function () {
+			let hex = "0123456789abcdefABCDEF";
+			let randomList = "#";
+			console.log(randomList);
+			for (let i = 0; i < 6; i++) {
+				let random = hex[Math.floor(Math.random() * hex.length)];
+				randomList += random;
+			}
+			console.log(randomList);
+			return randomList;
+		};
+
+		let token = generateColor();
+		console.log(token);
 
 		if (
 			this.state.username === "" ||
-			this.state.password === "" ||
-			this.state.passwordConfirm === ""
+			password === "" ||
+			passwordConfirm === ""
 		) {
 			this.setState({
 				error: "Please fill in each field"
 			});
-		} else if (this.state.password !== this.state.passwordConfirm) {
+		} else if (password !== passwordConfirm) {
 			this.setState({
 				error: "Passwords do not match"
 			});
 		} else {
 			this.setState({
-				loading: true,
 				error: ""
 			});
 
@@ -41,25 +70,20 @@ export default class SignUp extends Component {
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify({
 					username: this.state.username,
-					password: this.state.password
+					password: password,
+					token: token
 				})
 			})
 				.then((response) => response.json())
 				.then((data) => {
 					console.log(data);
 
-					this.setState({
-						loading: false
-					});
-
-					this.props.handleSetUser(data);
-					Cookies.set("username", this.state.username);
-					this.props.changeRoute("/rules");
+					Cookies.set("user", token);
+					this.props.history.push("/account");
 				})
 				.catch((error) => {
 					console.log("Error logging in: ", error);
 					this.setState({
-						loading: false,
 						error: "Seems like there was an error on our end, please try again later"
 					});
 				});
@@ -88,18 +112,14 @@ export default class SignUp extends Component {
 						type="password"
 						placeholder="Password"
 						name="password"
-						value={this.state.password}
-						onChange={this.handleChange}
 					/>
 					<input
 						type="password"
 						placeholder="Confirm Password"
 						name="passwordConfirm"
-						value={this.state.passwordConfirm}
-						onChange={this.handleChange}
 					/>
+					<button type="submit">Create Account</button>
 				</form>
-				<button type="submit">Create Account</button>
 			</div>
 		);
 	}

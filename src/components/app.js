@@ -10,6 +10,7 @@ import LogIn from "./login-pages/login";
 import Account from "./account-pages/account";
 import Home from "./home";
 import AllDecks from "./browse-pages/allDecks";
+import SignUp from "./login-pages/signUp";
 
 export default class App extends Component {
 	constructor(props) {
@@ -46,9 +47,10 @@ export default class App extends Component {
 							/>
 							<Route
 								exact
-								path="/allDecks"
+								path="/alldecks"
 								component={AllDecks}
 							/>
+							<Route exact path="/signup" component={SignUp} />
 						</Switch>
 					</div>
 				</Router>
