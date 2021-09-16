@@ -73,6 +73,8 @@ export default class Home extends Component {
 						<button type="submit" onClick={this.handleSearch}>
 							Search Cards
 						</button>
+					</div>
+					<div className="result-wrapper">
 						{this.state.card ? (
 							<div className="search-result-wrapper">
 								<h3>{this.state.card.name}</h3>
@@ -86,9 +88,6 @@ export default class Home extends Component {
 						) : (
 							<div>Results will appear here.</div>
 						)}
-					</div>
-					<div className="decks-wrapper">
-						Just a list of most popular decks
 					</div>
 					<div className="popular-cards-wrapper">
 						the three most common cards in all decks in the db
