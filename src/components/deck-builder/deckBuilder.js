@@ -8,13 +8,29 @@ export default class DeckBuilder extends Component {
 			card: false,
 			commander: null,
 			cards: [],
-			activeCard: false
+			card_uris: [],
+			activeCard: false,
+			error: ""
 		};
 
 		this.handleSearch = this.handleSearch.bind(this);
 		this.setCommander = this.setCommander.bind(this);
 		this.setCard = this.setCard.bind(this);
 		this.showCardImg = this.showCardImg.bind(this);
+		this.displayCard = this.displayCard.bind(this);
+	}
+
+	displayCard(card) {
+		this.state.cards.indexOf(card);
+		return (
+			<div className="card-display-wrapper">
+				<h3>{card}</h3>
+				<img
+					src={this.state.card_uris[this.state.cards.indexOf(card)]}
+					alt=""
+				/>
+			</div>
+		);
 	}
 
 	showCardImg(card) {
@@ -24,22 +40,31 @@ export default class DeckBuilder extends Component {
 	}
 
 	setCard() {
-		if (this.state.card !== this.state.commander) {
+		if (this.state.card === this.state.commander) {
 			this.setState({
-				cards: cards.append([
-					this.state.card.name,
-					this.state.card.color_identity,
-					this.state.card.image_uris,
-					this.state.card.type_line,
-					this.state.card.cmc
-				]),
-				card: false
+				error: "Error: A card cannot be added to a deck if it is already the Commander."
 			});
-		} else {
 			return console.log(
 				"Error: A card cannot be added to a deck if it is already the Commander."
 			);
+		} else if (this.state.cards.includes(this.state.card.name)) {
+			this.setState({
+				error: "Error: A card cannot be added to a deck more than once."
+			});
+			return console.log(
+				"Error: A card cannot be added to a deck more than once."
+			);
 		}
+		let cardUri = this.state.card_uris;
+		cardUri.push(this.state.card.image_uris.normal);
+
+		let cards = this.state.cards;
+		cards.push(this.state.card.name);
+		this.setState({
+			cards: cards,
+			card_uris: cardUri,
+			card: false
+		});
 	}
 
 	setCommander() {
@@ -52,6 +77,10 @@ export default class DeckBuilder extends Component {
 
 	handleSearch(event) {
 		event.preventDefault();
+
+		this.setState({
+			error: ""
+		});
 
 		let url = `https://api.scryfall.com/cards/named?exact=${encodeURI(
 			`!${event.target.searchInput.value}`
@@ -111,6 +140,7 @@ export default class DeckBuilder extends Component {
 						<div>Results will appear here.</div>
 					)}
 				</div>
+				<div className="error-wrapper">{this.state.error}</div>
 				<div className="current-deck-wrapper">
 					<div className="commander-display-wrapper">
 						{this.state.commander ? (
@@ -123,19 +153,7 @@ export default class DeckBuilder extends Component {
 						)}
 					</div>
 					<div className="cards-display-wrapper">
-						{this.state.cards.forEach((card) => {
-							<h5 onMouseOver={(card) => this.showCardImg}>
-								{card.name}
-							</h5>;
-							{
-								this.state.activeCard ? (
-									<img
-										src={this.state.card.image_uris.normal}
-										alt="Active Card"
-									/>
-								) : null;
-							}
-						})}
+						{this.state.cards.forEach(this.displayCard)}
 					</div>
 				</div>
 			</div>
