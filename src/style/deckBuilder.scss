@@ -1,3 +1,26 @@
 img {
 	height: 35vh;
 }
+
+.card-search-wrapper {
+	height: 38px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+
+	form {
+		height: 100%;
+
+		input {
+			height: 80%;
+		}
+	}
+}
+
+button {
+	@include button-styles;
+	display: block;
+	height: 37px;
+	align-content: center;
+}
