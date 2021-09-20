@@ -21,7 +21,7 @@ export default class NavBar extends Component {
 	}
 
 	componentDidMount() {
-		if (Cookies.get("user")) {
+		if (Cookies.get('user')) {
 			this.setState({
 				user: true
 			});

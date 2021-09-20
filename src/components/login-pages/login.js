@@ -28,17 +28,14 @@ export default class LogIn extends Component {
 				error: ""
 			});
 
-			fetch(
-				"https://deck-builder-api-swp.herokuapp.com/user/verification",
-				{
-					method: "POST",
-					headers: { "content-type": "application/json" },
-					body: JSON.stringify({
-						username: event.target.username.value,
-						password: event.target.password.value
-					})
-				}
-			)
+			fetch("http://127.0.0.1:5000/user/verification", {
+				method: "POST",
+				headers: { "content-type": "application/json" },
+				body: JSON.stringify({
+					username: event.target.username.value,
+					password: event.target.password.value
+				})
+			})
 				.then((response) => response.json())
 				.then((data) => {
 					console.log(data);
@@ -48,7 +45,7 @@ export default class LogIn extends Component {
 							error: "Invalid Username or Password"
 						});
 					} else {
-						Cookies.set("user", data.token);
+						Cookies.set('user', data.token);
 						this.props.history.push("/account");
 					}
 				})

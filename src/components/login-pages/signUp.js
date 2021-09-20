@@ -35,7 +35,7 @@ export default class SignUp extends Component {
 
 		const generateColor = function () {
 			let hex = "0123456789abcdefABCDEF";
-			let randomList = "#";
+			let randomList = "";
 			console.log(randomList);
 			for (let i = 0; i < 6; i++) {
 				let random = hex[Math.floor(Math.random() * hex.length)];
@@ -65,7 +65,7 @@ export default class SignUp extends Component {
 				error: ""
 			});
 
-			fetch("https://deck-builder-api-swp.herokuapp.com/user/add", {
+			fetch("http://127.0.0.1:5000/user/add", {
 				method: "POST",
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify({
@@ -78,7 +78,7 @@ export default class SignUp extends Component {
 				.then((data) => {
 					console.log(data);
 
-					Cookies.set("user", token);
+					Cookies.set('user', token);
 					this.props.history.push("/account");
 				})
 				.catch((error) => {

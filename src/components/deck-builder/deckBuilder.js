@@ -14,8 +14,7 @@ export default class DeckBuilder extends Component {
 			activeCard: false,
 			error: "",
 			user_id: null,
-			token: null,
-			users: null
+			token: null
 		};
 
 		this.handleSearch = this.handleSearch.bind(this);
@@ -27,26 +26,19 @@ export default class DeckBuilder extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			token: Cookies.get("user")
-		});
+        const myToken = Cookies.get('user')
+        this.setState({ token: myToken})
 
-		let getToken = user.find((token) => token.name === this.state.token);
-
-		fetch(`https://deck-builder-api-swp.herokuapp.com/user/get`, {
+		fetch(`http://127.0.0.1:5000/user/get/token/${myToken}`, {
 			method: "GET",
 			headers: {
 				"content-type": "application/json"
 			}
 		})
 			.then((response) => response.json())
-			.then((data) => console.log(data))
-			.then((user) => getToken)
-			.then((users) =>
-				this.setState({
-					users: { ...users }
-				})
-			)
+			.then((data) => this.setState({
+                user_id: data.id
+            }))
 			// .then(this.setState({
 			//     user_id: user
 			// }))
@@ -109,7 +101,7 @@ export default class DeckBuilder extends Component {
 	}
 
 	handleSaveDeck() {
-		fetch("https://deck-builder-api-swp.herokuapp.com/deck/add", {
+		fetch("http://127.0.0.1:5000/deck/add", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json"
