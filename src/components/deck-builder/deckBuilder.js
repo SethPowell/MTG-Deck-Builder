@@ -31,7 +31,7 @@ export default class DeckBuilder extends Component {
 			token: Cookies.get("user")
 		});
 
-		let user = null;
+		let getToken = user.find((token) => token.name === this.state.token);
 
 		fetch(`https://deck-builder-api-swp.herokuapp.com/user/get`, {
 			method: "GET",
@@ -41,6 +41,7 @@ export default class DeckBuilder extends Component {
 		})
 			.then((response) => response.json())
 			.then((data) => console.log(data))
+			.then((user) => getToken)
 			.then((users) =>
 				this.setState({
 					users: { ...users }
