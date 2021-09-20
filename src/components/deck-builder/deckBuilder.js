@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import React, { Component } from "react";
 
 export default class DeckBuilder extends Component {
@@ -10,7 +11,10 @@ export default class DeckBuilder extends Component {
 			cards: [],
 			card_uris: [],
 			activeCard: false,
-			error: ""
+			error: "",
+			user_id: null,
+			token: null,
+			users: null
 		};
 
 		this.handleSearch = this.handleSearch.bind(this);
@@ -18,6 +22,33 @@ export default class DeckBuilder extends Component {
 		this.setCard = this.setCard.bind(this);
 		this.showCardImg = this.showCardImg.bind(this);
 		this.displayCard = this.displayCard.bind(this);
+		this.handleSaveDeck = this.handleSaveDeck.bind(this);
+	}
+
+	componentDidMount() {
+		this.setState({
+			token: Cookies.get("user")
+		});
+
+		let user = null;
+
+		fetch(`http://127.0.0.1:5000/user/get`, {
+			method: "GET",
+			headers: {
+				"content-type": "application/json"
+			}
+		})
+			.then((response) => response.json())
+			.then((data) => console.log(data))
+			.then((users) =>
+				this.setState({
+					users: users
+				})
+			)
+			// .then(this.setState({
+			//     user_id: user
+			// }))
+			.catch((error) => console.log("Error setting user", error));
 	}
 
 	displayCard(card) {
@@ -75,6 +106,22 @@ export default class DeckBuilder extends Component {
 		}
 	}
 
+	handleSaveDeck() {
+		fetch("http://127.0.0.1:5000/deck/add", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json"
+			},
+			body: JSON.stringify({
+				user_id: this.state.user_id,
+				cards: this.state.cards,
+				commander: this.state.commander.name
+			})
+		})
+			.then((response) => console.log(response))
+			.catch(error, console.log("Error uploading deck", error));
+	}
+
 	handleSearch(event) {
 		event.preventDefault();
 
@@ -94,6 +141,12 @@ export default class DeckBuilder extends Component {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+				if (data.object == "error") {
+					this.setState({
+						error: "We couldn't find that card make sure the name is spelt correctly"
+					});
+					return console.log("error fetching card by name");
+				}
 				this.setState({
 					card: data
 				});
@@ -107,6 +160,7 @@ export default class DeckBuilder extends Component {
 		return (
 			<div className="deck-builder-wrapper">
 				<h2>Deck Builder</h2>
+				<button onClick={this.handleSaveDeck}>Save Deck</button>
 				<div className="card-search-wrapper">
 					<form onSubmit={this.handleSearch}>
 						<input type="text" name="searchInput" />
