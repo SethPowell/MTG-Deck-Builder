@@ -15,10 +15,15 @@ export default class Account extends Component {
 
 	componentDidMount() {
 		console.log(Cookies.get("user"));
-		fetch(`http://127.0.0.1:5000/user/get/"${Cookies.get("user")}"`, {
-			method: "GET",
-			headers: { "content-type": "application/json" }
-		})
+		fetch(
+			`https://mtg-deck-builder-swp.herokuapp.com//user/get/"${Cookies.get(
+				"user"
+			)}"`,
+			{
+				method: "GET",
+				headers: { "content-type": "application/json" }
+			}
+		)
 			.then((response) => {
 				return response.json();
 			})
@@ -28,7 +33,7 @@ export default class Account extends Component {
 		// 		user_id: id
 		// 	});
 		// });
-		// fetch(`http://127.0.0.1:5000/deck/get/${}`, {
+		// fetch(`https://mtg-deck-builder-swp.herokuapp.com//deck/get/${}`, {
 		// 	method: "GET",
 		// 	headers: {
 		// 		"Content-type": "appication/json"
