@@ -41,6 +41,12 @@ export default class Home extends Component {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
+				if (data.object == "error") {
+					this.setState({
+						error: "We couldn't find that card make sure the name is spelt correctly"
+					});
+					return console.log("error fetching card by name");
+				}
 				this.setState({
 					card: data
 				});
