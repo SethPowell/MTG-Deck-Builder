@@ -25,9 +25,11 @@ export default class Account extends Component {
 				headers: { "content-type": "application/json" }
 			}
 		)
+			.then(console.log("check 1"))
 			.then((response) => {
 				return response.json();
 			})
+			.then(console.log("check 2"))
 			.then((data) => console.log(data));
 		// .then((data) => {
 		// 	this.setState({
@@ -44,6 +46,7 @@ export default class Account extends Component {
 
 	handleLogOut() {
 		Cookies.remove("user");
+		this.props.history.props("/");
 	}
 
 	changePage(route) {
