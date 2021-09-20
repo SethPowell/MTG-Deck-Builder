@@ -43,7 +43,7 @@ export default class DeckBuilder extends Component {
 			.then((data) => console.log(data))
 			.then((users) =>
 				this.setState({
-					users: users
+					users: { ...users }
 				})
 			)
 			// .then(this.setState({
