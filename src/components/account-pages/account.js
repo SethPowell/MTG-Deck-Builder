@@ -11,6 +11,7 @@ export default class Account extends Component {
 		};
 
 		this.changePage = this.changePage.bind(this);
+		this.handleLogOut = this.handleLogOut.bind(this);
 	}
 
 	componentDidMount() {
@@ -41,6 +42,10 @@ export default class Account extends Component {
 		// });
 	}
 
+	handleLogOut() {
+		Cookies.remove("user");
+	}
+
 	changePage(route) {
 		console.log(`/${route}`);
 		this.props.history.props(`/${route}`);
@@ -54,6 +59,9 @@ export default class Account extends Component {
 					<NavLink to="/deckbuilder">Build Deck</NavLink>
 					<NavLink to="/alldecks">Browse All Decks</NavLink>
 					<NavLink to="/">Home</NavLink>
+				</div>
+				<div className="logout-wrapper">
+					<button onClick={this.handleLogOut}>Log Out</button>
 				</div>
 				<div className="user-decks-wrapper">
 					User Decks Go Here
