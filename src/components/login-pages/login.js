@@ -29,7 +29,7 @@ export default class LogIn extends Component {
 			});
 
 			fetch(
-				"https://mtg-deck-builder-swp.herokuapp.com//user/verification",
+				"https://mtg-deck-builder-swp.herokuapp.com/user/verification",
 				{
 					method: "POST",
 					headers: { "content-type": "application/json" },

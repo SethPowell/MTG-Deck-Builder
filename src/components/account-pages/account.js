@@ -16,7 +16,7 @@ export default class Account extends Component {
 	componentDidMount() {
 		console.log(Cookies.get("user"));
 		fetch(
-			`https://mtg-deck-builder-swp.herokuapp.com//user/get/"${Cookies.get(
+			`https://mtg-deck-builder-swp.herokuapp.com/user/get/"${Cookies.get(
 				"user"
 			)}"`,
 			{

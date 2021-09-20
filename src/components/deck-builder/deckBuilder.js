@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import React, { Component } from "react";
+import NavBar from "../navigation/navBar";
 
 export default class DeckBuilder extends Component {
 	constructor(props) {
@@ -32,7 +33,7 @@ export default class DeckBuilder extends Component {
 
 		let user = null;
 
-		fetch(`https://mtg-deck-builder-swp.herokuapp.com//user/get`, {
+		fetch(`https://mtg-deck-builder-swp.herokuapp.com/user/get`, {
 			method: "GET",
 			headers: {
 				"content-type": "application/json"
@@ -107,7 +108,7 @@ export default class DeckBuilder extends Component {
 	}
 
 	handleSaveDeck() {
-		fetch("https://mtg-deck-builder-swp.herokuapp.com//deck/add", {
+		fetch("https://mtg-deck-builder-swp.herokuapp.com/deck/add", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json"
@@ -160,6 +161,9 @@ export default class DeckBuilder extends Component {
 		return (
 			<div className="deck-builder-wrapper">
 				<h2>Deck Builder</h2>
+				<div className="nav-bar-wrapper">
+					<NavBar />
+				</div>
 				<button onClick={this.handleSaveDeck}>Save Deck</button>
 				<div className="card-search-wrapper">
 					<form onSubmit={this.handleSearch}>

@@ -65,7 +65,7 @@ export default class SignUp extends Component {
 				error: ""
 			});
 
-			fetch("https://mtg-deck-builder-swp.herokuapp.com//user/add", {
+			fetch("https://mtg-deck-builder-swp.herokuapp.com/user/add", {
 				method: "POST",
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify({
