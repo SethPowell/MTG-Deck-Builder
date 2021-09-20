@@ -33,7 +33,7 @@ export default class DeckBuilder extends Component {
 
 		let user = null;
 
-		fetch(`https://mtg-deck-builder-swp.herokuapp.com/user/get`, {
+		fetch(`https://deck-builder-api-swp.herokuapp.com/user/get`, {
 			method: "GET",
 			headers: {
 				"content-type": "application/json"
@@ -108,7 +108,7 @@ export default class DeckBuilder extends Component {
 	}
 
 	handleSaveDeck() {
-		fetch("https://mtg-deck-builder-swp.herokuapp.com/deck/add", {
+		fetch("https://deck-builder-api-swp.herokuapp.com/deck/add", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json"

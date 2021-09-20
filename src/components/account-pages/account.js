@@ -16,7 +16,7 @@ export default class Account extends Component {
 	componentDidMount() {
 		console.log(Cookies.get("user"));
 		fetch(
-			`https://mtg-deck-builder-swp.herokuapp.com/user/get/"${Cookies.get(
+			`https://deck-builder-api-swp.herokuapp.com/user/get/"${Cookies.get(
 				"user"
 			)}"`,
 			{
@@ -33,7 +33,7 @@ export default class Account extends Component {
 		// 		user_id: id
 		// 	});
 		// });
-		// fetch(`https://mtg-deck-builder-swp.herokuapp.com//deck/get/${}`, {
+		// fetch(`https://deck-builder-api-swp.herokuapp.com//deck/get/${}`, {
 		// 	method: "GET",
 		// 	headers: {
 		// 		"Content-type": "appication/json"
