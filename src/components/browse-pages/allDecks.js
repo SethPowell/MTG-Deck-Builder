@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import NavBar from "../navigation/navBar";
 
 export default class AllDecks extends Component {
 	constructor(props) {
@@ -57,7 +58,8 @@ export default class AllDecks extends Component {
 	render() {
 		return (
             <div className="all-decks-wrapper">
-                All decks view page
+                <h2>All decks view page</h2>
+                <NavBar />
                 <div className="error-wrapper">
                     {this.state.error}
                 </div>

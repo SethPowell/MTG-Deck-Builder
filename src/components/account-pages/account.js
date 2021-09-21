@@ -7,7 +7,7 @@ export default class Account extends Component {
 		super(props);
 
 		this.state = {
-			user_id: null,
+			user_id: 0,
             decks: null
 		};
 
@@ -25,7 +25,7 @@ export default class Account extends Component {
         .then((data) => Cookies.set('id', data.id))
         .then(console.log(Cookies.get('id')))
 
-		fetch(`http://127.0.0.1:5000/deck/get/${Cookies.get('id')}`, {
+		.then(fetch(`http://127.0.0.1:5000/deck/get/${Cookies.get('id')}`, {
 			method: "GET",
 			headers: {
 				"Content-type": "appication/json"
@@ -33,37 +33,46 @@ export default class Account extends Component {
 		})
         .then((response) => response.json())
         .then(data => this.setState({decks: data}))
-        .then(func => Cookies.remove("id"))
+        .then(setUser => this.setState({
+            user_id: parseInt(Cookies.get('id'))
+        }))
         .catch(error => console.log("Error fetching user data: ", error))
+        )
 
 	}
 
+    componentWillUnmount() {
+        Cookies.remove('id')
+    }
+
 	handleLogOut() {
 		Cookies.remove("user");
-		this.props.history.props("/");
+		this.props.history.push("/");
 	}
 
 	changePage(route) {
 		console.log(`/${route}`);
-		this.props.history.props(`/${route}`);
+		this.props.history.push(`/${route}`);
 	}
 
 	render() {
 		return (
 			<div className="account-wrapper">
-				<h1>Account Page</h1>
-				<div className="nav-links-wrapper">
-					<NavLink to="/deckbuilder">Build Deck</NavLink>
-					<NavLink to="/alldecks">Browse All Decks</NavLink>
-					<NavLink to="/">Home</NavLink>
-				</div>
-				<div className="logout-wrapper">
-					<button onClick={this.handleLogOut}>Log Out</button>
-				</div>
-				<div className="user-decks-wrapper">
-					User Decks Go Here
-					{/* TODO: import user decks on component did mount */}
-				</div>
+                <div className="banner-wrapper">
+                    <h1>Account Page</h1>
+                    <div className="logout-wrapper">
+                        <button onClick={this.handleLogOut}>Log Out</button>
+                    </div>
+                </div>
+                <div className="nav-links-wrapper">
+                    <NavLink to="/deckbuilder">Build Deck</NavLink>
+                    <NavLink to="/alldecks">Browse All Decks</NavLink>
+                    <NavLink to="/">Home</NavLink>
+                </div>
+                <div className="user-decks-wrapper">
+                    User Decks Go Here
+                    {/* TODO: import user decks on component did mount */}
+                </div>
 			</div>
 		);
 	}

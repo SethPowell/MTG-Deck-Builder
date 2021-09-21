@@ -46,7 +46,7 @@ export default class LogIn extends Component {
 						});
 					} else {
 						Cookies.set('user', data.token);
-						this.history.push("/account");
+						this.props.history.push("/account");
 					}
 				})
 				.catch((error) => {

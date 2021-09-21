@@ -3,14 +3,16 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	width: 98vw;
+	width: 99.9vw;
 	height: 100%;
-	padding: 0px;
-	border-bottom: 1px solid black;
-	border-left: 1px solid black;
+	padding: 1px;
+    padding-right: 0px;
+    padding-left: 0px;
+
+	border: 1px solid black;
 
 	.search-bar-wrapper {
-		height: 61px;
+		height: 100%;
 
 		form {
 			height: 58px;
@@ -23,11 +25,10 @@
 			input {
 				height: 58px;
 				margin: 0px;
-				padding-top: -15px;
 			}
 
 			button {
-				height: 64px;
+				height: 63px;
 				border-bottom: none;
 				border-top: none;
 				border-radius: 0%;
@@ -44,10 +45,10 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		height: 60px;
+		height: 61px;
 
 		.left-buttons {
-			height: 61px;
+			height: 63px;
 			width: 80px;
 			border: 1px solid black;
 			border-bottom: none;
@@ -105,7 +106,7 @@
 				}
 			}
 
-			height: 61px;
+			height: 63px;
 			width: 80px;
 			border: 1px solid black;
 			border-top: none;
@@ -118,7 +119,7 @@
 			.navlink {
 				display: block;
 				text-align: center;
-				line-height: 62px;
+				line-height: 65px;
 				font-family: sans-serif;
 				color: black;
 				height: 100%;

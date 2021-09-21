@@ -39,7 +39,11 @@ export default class App extends Component {
 								path="/account"
 								render={(props) => <Account {...props} />}
 							/>
-							<Route exact path="/login" component={LogIn} />
+							<Route 
+                                exact 
+                                path="/login" 
+                                render={(props) => <LogIn {...props} />} 
+                            />
 							<Route
 								exact
 								path="/deckbuilder"

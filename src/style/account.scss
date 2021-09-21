@@ -1,0 +1,24 @@
+.account-wrapper {
+    h1 {
+        margin-left:2vw;
+    }
+
+    .nav-links-wrapper {
+        a { 
+            @include button-styles;
+            text-decoration: none;
+            padding: 0.5vw;
+            margin: 1vw;
+        }
+    }
+
+    .banner-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .logout-wrapper {
+            margin:1vw;
+        }
+    }
+}

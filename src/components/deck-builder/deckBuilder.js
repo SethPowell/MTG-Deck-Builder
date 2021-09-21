@@ -151,7 +151,7 @@ export default class DeckBuilder extends Component {
 		return (
 			<div className="deck-builder-wrapper">
 				<h2>Deck Builder</h2>
-				<div className="nav-bar-wrapper">
+				<div className="nav-wrapper">
 					<NavBar />
 				</div>
 				<button onClick={this.handleSaveDeck}>Save Deck</button>
