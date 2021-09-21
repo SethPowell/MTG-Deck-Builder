@@ -7,7 +7,8 @@ export default class Account extends Component {
 		super(props);
 
 		this.state = {
-			user_id: null
+			user_id: null,
+            decks: null
 		};
 
 		this.changePage = this.changePage.bind(this);
@@ -16,27 +17,24 @@ export default class Account extends Component {
 
 	componentDidMount() {
 		console.log(Cookies.get('user'));
-		fetch(`http://127.0.0.1:5000/user/get/'${Cookies.get('user')}'`, {
+		fetch(`http://127.0.0.1:5000/user/get/token/${Cookies.get('user')}`, {
 			method: "GET",
 			headers: { "content-type": "application/json" }
 		})
-			.then(console.log("check 1"))
-			.then((response) => {
-				return response.json();
-			})
-			.then(console.log("check 2"))
-			.then((data) => console.log(data));
-		// .then((data) => {
-		// 	this.setState({
-		// 		user_id: id
-		// 	});
-		// });
-		// fetch(`http://127.0.0.1:5000//deck/get/${}`, {
-		// 	method: "GET",
-		// 	headers: {
-		// 		"Content-type": "appication/json"
-		// 	}
-		// });
+        .then((response) => response.json())
+        .then((data) => Cookies.set('id', data.id))
+        .then(console.log(Cookies.get('id')))
+
+		fetch(`http://127.0.0.1:5000/deck/get/${Cookies.get('id')}`, {
+			method: "GET",
+			headers: {
+				"Content-type": "appication/json"
+			}
+		})
+        .then((response) => response.json())
+        .then(data => this.setState({decks: data}))
+        .catch(error => console.log("Error fetching user data: ", error))
+
 	}
 
 	handleLogOut() {

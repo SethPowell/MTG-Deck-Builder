@@ -24,3 +24,11 @@ button {
 	height: 37px;
 	align-content: center;
 }
+
+.cards-display-wrapper {
+    width: 98vw;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(1fr, 9);
+    grid-template-rows: repeat(1fr, 11);
+}

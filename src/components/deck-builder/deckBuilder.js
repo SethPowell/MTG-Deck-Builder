@@ -10,7 +10,7 @@ export default class DeckBuilder extends Component {
 			card: false,
 			commander: null,
 			cards: [],
-			card_uris: [],
+			card_id: 0,
 			activeCard: false,
 			error: "",
 			user_id: null,
@@ -21,7 +21,7 @@ export default class DeckBuilder extends Component {
 		this.setCommander = this.setCommander.bind(this);
 		this.setCard = this.setCard.bind(this);
 		this.showCardImg = this.showCardImg.bind(this);
-		this.displayCard = this.displayCard.bind(this);
+		// this.displayCard = this.displayCard.bind(this);
 		this.handleSaveDeck = this.handleSaveDeck.bind(this);
 	}
 
@@ -39,24 +39,21 @@ export default class DeckBuilder extends Component {
 			.then((data) => this.setState({
                 user_id: data.id
             }))
-			// .then(this.setState({
-			//     user_id: user
-			// }))
 			.catch((error) => console.log("Error setting user", error));
 	}
 
-	displayCard(card) {
-		this.state.cards.indexOf(card);
-		return (
-			<div className="card-display-wrapper">
-				<h3>{card}</h3>
-				<img
-					src={this.state.card_uris[this.state.cards.indexOf(card)]}
-					alt=""
-				/>
-			</div>
-		);
-	}
+	// displayCard(card) {
+    //     render() {
+    //         report_sequence.map((data) => 
+    //             return (
+    //                 <div className={data.key} key={data.id}>
+    //                     {this.componentMap[data.type] && this.componentMap[data.type]()}
+    //                 </div>
+    //             );
+    //   )
+    // }
+		
+	
 
 	showCardImg(card) {
 		this.setState({
@@ -80,15 +77,15 @@ export default class DeckBuilder extends Component {
 				"Error: A card cannot be added to a deck more than once."
 			);
 		}
-		let cardUri = this.state.card_uris;
-		cardUri.push(this.state.card.image_uris.normal);
+		// let cardUri = this.state.card_uris;
+		// cardUri.push(this.state.card.image_uris.normal);
 
 		let cards = this.state.cards;
 		cards.push(this.state.card.name);
 		this.setState({
 			cards: cards,
-			card_uris: cardUri,
-			card: false
+			card: false,
+            card_id: this.state.card_id + 1
 		});
 	}
 
@@ -101,19 +98,21 @@ export default class DeckBuilder extends Component {
 	}
 
 	handleSaveDeck() {
+        console.log(this.state.user_id, this.state.cards, this.state.commander)
 		fetch("http://127.0.0.1:5000/deck/add", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json"
 			},
 			body: JSON.stringify({
+                cards: this.state.cards,
 				user_id: this.state.user_id,
-				cards: this.state.cards,
-				commander: this.state.commander.name
+				commander: this.state.commander.name,
+                views: 0
 			})
 		})
 			.then((response) => console.log(response))
-			.catch(error, console.log("Error uploading deck", error));
+			.catch(error => console.log("Error uploading deck", error));
 	}
 
 	handleSearch(event) {
@@ -204,7 +203,7 @@ export default class DeckBuilder extends Component {
 						)}
 					</div>
 					<div className="cards-display-wrapper">
-						{this.state.cards.forEach(this.displayCard)}
+						<button onClick={this.displayCard}>Refresh Card List</button>
 					</div>
 				</div>
 			</div>
