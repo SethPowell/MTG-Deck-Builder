@@ -43,14 +43,12 @@ export default class DeckBuilder extends Component {
 	}
 
 	// displayCard(card) {
-    //     render() {
-    //         report_sequence.map((data) => 
-    //             return (
-    //                 <div className={data.key} key={data.id}>
-    //                     {this.componentMap[data.type] && this.componentMap[data.type]()}
-    //                 </div>
-    //             );
-    //   )
+    //     while (i=0; )
+    //     return (
+    //         <div className="card-list">
+    //             {}
+    //         </div>
+    //     );
     // }
 		
 	

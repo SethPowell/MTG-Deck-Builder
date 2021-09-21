@@ -51,6 +51,11 @@ export default class App extends Component {
 								component={AllDecks}
 							/>
 							<Route exact path="/signup" component={SignUp} />
+                            <Route
+                                exact
+                                path="/deckPage"
+                                redner={(props) => <DeckPage {...props} />}
+                            />
 						</Switch>
 					</div>
 				</Router>

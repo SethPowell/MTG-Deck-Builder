@@ -33,6 +33,7 @@ export default class Account extends Component {
 		})
         .then((response) => response.json())
         .then(data => this.setState({decks: data}))
+        .then(func => Cookies.remove("id"))
         .catch(error => console.log("Error fetching user data: ", error))
 
 	}
