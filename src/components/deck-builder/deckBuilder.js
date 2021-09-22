@@ -14,14 +14,14 @@ export default class DeckBuilder extends Component {
 			activeCard: false,
 			error: "",
 			user_id: null,
-			token: null
+			token: null,
+            currentDeck: ["Current Cards"]
 		};
 
 		this.handleSearch = this.handleSearch.bind(this);
 		this.setCommander = this.setCommander.bind(this);
 		this.setCard = this.setCard.bind(this);
 		this.showCardImg = this.showCardImg.bind(this);
-		// this.displayCard = this.displayCard.bind(this);
 		this.handleSaveDeck = this.handleSaveDeck.bind(this);
 	}
 
@@ -41,17 +41,6 @@ export default class DeckBuilder extends Component {
             }))
 			.catch((error) => console.log("Error setting user", error));
 	}
-
-	// displayCard(card) {
-    //     while (i=0; )
-    //     return (
-    //         <div className="card-list">
-    //             {}
-    //         </div>
-    //     );
-    // }
-		
-	
 
 	showCardImg(card) {
 		this.setState({
@@ -75,15 +64,19 @@ export default class DeckBuilder extends Component {
 				"Error: A card cannot be added to a deck more than once."
 			);
 		}
-		// let cardUri = this.state.card_uris;
-		// cardUri.push(this.state.card.image_uris.normal);
+
+        this.setState({
+            card_id: this.state.card_id + 1
+        })
 
 		let cards = this.state.cards;
 		cards.push(this.state.card.name);
+        let deck = this.state.currentDeck;
+        deck.push(<h3 id={this.state.card_id}>{this.state.card.name}</h3>)
 		this.setState({
 			cards: cards,
 			card: false,
-            card_id: this.state.card_id + 1
+            currentDeck: deck
 		});
 	}
 
@@ -110,7 +103,8 @@ export default class DeckBuilder extends Component {
 			})
 		})
 			.then((response) => console.log(response))
-			.catch(error => console.log("Error uploading deck", error));
+            .then(this.props.history.push("/account"))
+			.catch(error => this.setState({error: "Error uploading deck"}));
 	}
 
 	handleSearch(event) {
@@ -156,38 +150,12 @@ export default class DeckBuilder extends Component {
 				</div>
 				<button onClick={this.handleSaveDeck}>Save Deck</button>
 				<div className="card-search-wrapper">
-					<form onSubmit={this.handleSearch}>
+					<form onSubmit={this.handleSearch} className="search-form">
 						<input type="text" name="searchInput" />
 						<button type="submit">Search Cards</button>
 					</form>
 				</div>
-				<div className="result-wrapper">
-					{this.state.card ? (
-						<div className="search-result-wrapper">
-							<h3>{this.state.card.name}</h3>
-							<img
-								className="card-image"
-								src={this.state.card.image_uris.normal}
-								alt={this.state.card.name}
-							/>
-							<h5>{this.state.card.oracle_text}</h5>
-							{this.state.card ? (
-								<div className="add-buttons-wrapper">
-									<button onClick={this.setCommander}>
-										Add as Commander
-									</button>
-									<button onClick={this.setCard}>
-										Add as Card
-									</button>
-								</div>
-							) : (
-								<div className="button-spacer"></div>
-							)}
-						</div>
-					) : (
-						<div>Results will appear here.</div>
-					)}
-				</div>
+				
 				<div className="error-wrapper">{this.state.error}</div>
 				<div className="current-deck-wrapper">
 					<div className="commander-display-wrapper">
@@ -201,8 +169,35 @@ export default class DeckBuilder extends Component {
 						)}
 					</div>
 					<div className="cards-display-wrapper">
-						<button onClick={this.displayCard}>Refresh Card List</button>
+                        {this.state.currentDeck}
 					</div>
+                    <div className="result-wrapper">
+                        {this.state.card ? (
+                            <div className="search-result-wrapper">
+                                <h3>{this.state.card.name}</h3>
+                                <img
+                                    className="card-image"
+                                    src={this.state.card.image_uris.normal}
+                                    alt={this.state.card.name}
+                                />
+                                <h5>{this.state.card.oracle_text}</h5>
+                                {this.state.card ? (
+                                    <div className="add-buttons-wrapper">
+                                        {!this.state.commander ? <button onClick={this.setCommander}>
+                                            Add as Commander
+                                        </button> : null}
+                                        <button onClick={this.setCard}>
+                                            Add as Card
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <div className="button-spacer"></div>
+                                )}
+                            </div>
+                        ) : (
+                            <div>Results will appear here.</div>
+                        )}
+				    </div>
 				</div>
 			</div>
 		);

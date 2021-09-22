@@ -2,22 +2,6 @@ img {
 	height: 35vh;
 }
 
-.card-search-wrapper {
-	height: 38px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-around;
-
-	form {
-		height: 100%;
-
-		input {
-			height: 80%;
-		}
-	}
-}
-
 button {
 	@include button-styles;
 	display: block;
@@ -25,10 +9,29 @@ button {
 	align-content: center;
 }
 
-.cards-display-wrapper {
-    width: 98vw;
-    height: 100%;
+.card-search-wrapper {
+    margin-top: -2.5vw;
+	height: 38px;
+
+	.search-form {
+		height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+		input {
+			height: 32px;
+		}
+	}
+}
+
+.current-deck-wrapper {
     display: grid;
-    grid-template-columns: repeat(1fr, 9);
-    grid-template-rows: repeat(1fr, 11);
+    grid-template-columns: .8fr 1fr 1fr;
+    margin-top: 10vh;
+}
+
+.cards-display-wrapper {
+    height: 100%;
 }
