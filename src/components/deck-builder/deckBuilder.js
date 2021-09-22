@@ -29,7 +29,7 @@ export default class DeckBuilder extends Component {
         const myToken = Cookies.get('user')
         this.setState({ token: myToken})
 
-		fetch(`http://127.0.0.1:5000/user/get/token/${myToken}`, {
+		fetch(`https://deck-builder-api-swp.herokuapp.com/user/get/token/${myToken}`, {
 			method: "GET",
 			headers: {
 				"content-type": "application/json"
@@ -90,7 +90,7 @@ export default class DeckBuilder extends Component {
 
 	handleSaveDeck() {
         console.log(this.state.user_id, this.state.cards, this.state.commander)
-		fetch("http://127.0.0.1:5000/deck/add", {
+		fetch("https://deck-builder-api-swp.herokuapp.com/deck/add", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json"

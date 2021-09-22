@@ -29,12 +29,12 @@ export default class AllDecks extends Component {
             // console.log(build_list)
             let complete_list = build_list.push(deck_list)
             console.log(build_list)
-            this.setState({deck_list: build_list})
+            this.setState({deck_list: complete_list})
             // console.log(this.state.deck_list)
         }
 
         const call1 = async () => {
-            const response = await fetch("http://127.0.0.1:5000/deck/get", {
+            const response = await fetch("https://deck-builder-api-swp.herokuapp.com/deck/get", {
                 method: "GET",
                 headers: {
                     "Content-type": "appication/json"
@@ -46,7 +46,7 @@ export default class AllDecks extends Component {
         }
 
         const call2 = async (deck) => {
-            const response1 =await fetch(`http://127.0.0.1:5000/user/get/${deck.user_id}`, {
+            const response1 =await fetch(`https://deck-builder-api-swp.herokuapp.com/user/get/${deck.user_id}`, {
                 method: "GET",
                 headers: {
                     "Content-type": "appication/json"
@@ -103,7 +103,7 @@ export default class AllDecks extends Component {
 	// 	})
 	// 	.then((response) => response.json())
     //     .then(data => img_uri = data.image_uris.normal)
-    //     .then(fetch(`http://127.0.0.1:5000/user/get/${deck.user_id}`, {
+    //     .then(fetch(`https://deck-builder-api-swp.herokuapp.com/user/get/${deck.user_id}`, {
     //         method: "GET",
 	// 		headers: {
 	// 			"Content-type": "appication/json"

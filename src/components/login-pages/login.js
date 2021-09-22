@@ -28,7 +28,7 @@ export default class LogIn extends Component {
 				error: ""
 			});
 
-			fetch("http://127.0.0.1:5000/user/verification", {
+			fetch("https://deck-builder-api-swp.herokuapp.com/user/verification", {
 				method: "POST",
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify({

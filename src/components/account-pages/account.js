@@ -17,7 +17,7 @@ export default class Account extends Component {
 
 	componentDidMount() {
 		console.log(Cookies.get('user'));
-		fetch(`http://127.0.0.1:5000/user/get/token/${Cookies.get('user')}`, {
+		fetch(`https://deck-builder-api-swp.herokuapp.com/user/get/token/${Cookies.get('user')}`, {
 			method: "GET",
 			headers: { "content-type": "application/json" }
 		})
@@ -25,7 +25,7 @@ export default class Account extends Component {
         .then((data) => Cookies.set('id', data.id))
         .then(console.log(Cookies.get('id')))
 
-		.then(fetch(`http://127.0.0.1:5000/deck/get/${Cookies.get('id')}`, {
+		.then(fetch(`https://deck-builder-api-swp.herokuapp.com/deck/get/${Cookies.get('id')}`, {
 			method: "GET",
 			headers: {
 				"Content-type": "appication/json"
