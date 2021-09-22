@@ -10,7 +10,7 @@ export default class AllDecks extends Component {
             decks: [],
             error: "",
             deck_list: [],
-            username: ""
+            username: "anonymous user"
         };
 
         // this.renderDecks = this.renderDecks.bind(this)
@@ -29,7 +29,7 @@ export default class AllDecks extends Component {
             // console.log(build_list)
             let complete_list = build_list.push(deck_list)
             console.log(build_list)
-            this.setState({deck_list: complete_list})
+            this.setState({deck_list: build_list})
             // console.log(this.state.deck_list)
         }
 
@@ -45,25 +45,27 @@ export default class AllDecks extends Component {
             return decks
         }
 
-        const call2 = async (deck) => {
-            const response1 =await fetch(`https://deck-builder-api-swp.herokuapp.com/user/get/${deck.user_id}`, {
+        const call2 = (deck) => {
+            // const response1 =await 
+            fetch(`https://deck-builder-api-swp.herokuapp.com/user/get/${deck.user_id}`, {
                 method: "GET",
                 headers: {
                     "Content-type": "appication/json"
                 }
             })
-            // .then(response2 => response2 = response1.text())
-            const response2 = await response1.json()
-            this.setState({username: `${response2.username}`})
+            .then(response => response.json())
+            // const response2 = await response1.json()
+            .then(data => this.setState({username: `${data.username}`}))
             // console.log(response2)
-            let response = `${deck.commander} by ${this.state.username}`
+            let response1 = `${deck.commander} by ${this.state.username}`
             // console.log("username", username, "response", response)
-            // console.log(response)
-            // return <h3>{response}</h3>
-            return {
-                type: 'GET_AGENT_DETAILS',
-                payload: response
-            }
+            console.log(this.state.username)
+            console.log(response1)
+            return <h3>{response1}</h3>
+            // return {
+            //     type: 'GET_AGENT_DETAILS',
+            //     payload: response
+            // }
         }
 
         const getDecks = (decks) => {

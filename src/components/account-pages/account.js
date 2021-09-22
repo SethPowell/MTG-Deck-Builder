@@ -70,7 +70,7 @@ export default class Account extends Component {
                     <NavLink to="/">Home</NavLink>
                 </div>
                 <div className="user-decks-wrapper">
-                    User Decks Go Here
+                    <div>{this.state.decks}</div>
                     {/* TODO: import user decks on component did mount */}
                 </div>
 			</div>
