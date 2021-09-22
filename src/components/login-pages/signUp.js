@@ -101,7 +101,6 @@ export default class SignUp extends Component {
 		return (
 			<div className="page-wrapper">
                 <div className="nav-wrapper">
-                    {/* <h2>Create New Account</h2> */}
                     <NavBar />
                 </div>
                 <div className="sign-up-wrapper">

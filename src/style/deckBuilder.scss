@@ -12,7 +12,8 @@ button {
 .nav-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    margin-bottom: 1vh;
 }
 
 .card-search-wrapper {

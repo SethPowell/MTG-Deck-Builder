@@ -64,7 +64,6 @@ export default class AllDecks extends Component {
 		return (
             <div className="all-decks-wrapper" >
                 <div className="nav-wrapper">
-                    <h2>All decks view page</h2>
                     <NavBar />
                 </div>
                 <div className="error-wrapper">

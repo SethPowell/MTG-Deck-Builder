@@ -145,7 +145,6 @@ export default class DeckBuilder extends Component {
 		return (
 			<div className="deck-builder-wrapper">
 				<div className="nav-wrapper">
-                    <h2>Deck Builder</h2>
 					<NavBar />
 				</div>
 				<div className="card-search-wrapper">

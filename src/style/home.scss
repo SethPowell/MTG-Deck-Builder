@@ -4,9 +4,11 @@
 	align-items: center;
 	justify-content: center;
 
-    // .nav-bar-container {
-    //     width: 100%;
-    // }
+    .nav-bar-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
 	.search-wrapper {
         display: flex;
