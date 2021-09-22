@@ -23,7 +23,7 @@ export default class AllDecks extends Component {
         }
 
         const call1 = async () => {
-            const response = await fetch("http://127.0.0.1:5000/deck/get", {
+            const response = await fetch("https://deck-builder-api-swp.herokuapp.com/deck/get", {
                 method: "GET",
                 headers: {
                     "Content-type": "appication/json"
@@ -35,7 +35,7 @@ export default class AllDecks extends Component {
         }
 
         const call2 = (deck) => {
-            fetch(`http://127.0.0.1:5000/user/get/${deck.user_id}`, {
+            fetch(`https://deck-builder-api-swp.herokuapp.com/user/get/${deck.user_id}`, {
                 method: "GET",
                 headers: {
                     "Content-type": "appication/json"
@@ -63,8 +63,10 @@ export default class AllDecks extends Component {
 	render() {
 		return (
             <div className="all-decks-wrapper" >
-                <h2>All decks view page</h2>
-                <NavBar />
+                <div className="nav-wrapper">
+                    <h2>All decks view page</h2>
+                    <NavBar />
+                </div>
                 <div className="error-wrapper">
                     {this.state.error}
                 </div>

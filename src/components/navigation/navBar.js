@@ -65,6 +65,16 @@ export default class NavBar extends Component {
 							<FontAwesomeIcon icon="user" />
 						</NavLink>
 					</div>
+                    <div className="user-buttons">
+                        <NavLink to="/" className="navlink">
+                            <FontAwesomeIcon icon="home" />
+                        </NavLink>
+                    </div>
+                    <div className="user-buttons">
+                        <NavLink to="/deckBuilder" className="navlink">
+                            <FontAwesomeIcon icon="edit" />
+                        </NavLink>
+                    </div>
 				</div>
 			</div>
 		);

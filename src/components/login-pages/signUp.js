@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Cookies from "js-cookie";
+import NavBar from "../navigation/navBar";
 
 export default class SignUp extends Component {
 	constructor(props) {
@@ -65,7 +66,7 @@ export default class SignUp extends Component {
 				error: ""
 			});
 
-			fetch("http://127.0.0.1:5000/user/add", {
+			fetch("https://deck-builder-api-swp.herokuapp.com/user/add", {
 				method: "POST",
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify({
@@ -98,28 +99,33 @@ export default class SignUp extends Component {
 
 	render() {
 		return (
-			<div className="sign-up-wrapper">
-				<h2>Create New Account</h2>
-				<form className="sign-up-form" onSubmit={this.handleSubmit}>
-					<input
-						type="text"
-						placeholder="Username"
-						name="username"
-						value={this.state.username}
-						onChange={this.handleChange}
-					/>
-					<input
-						type="password"
-						placeholder="Password"
-						name="password"
-					/>
-					<input
-						type="password"
-						placeholder="Confirm Password"
-						name="passwordConfirm"
-					/>
-					<button type="submit">Create Account</button>
-				</form>
+			<div className="page-wrapper">
+                <div className="nav-wrapper">
+                    {/* <h2>Create New Account</h2> */}
+                    <NavBar />
+                </div>
+                <div className="sign-up-wrapper">
+                    <form className="sign-up-form" onSubmit={this.handleSubmit}>
+                        <input
+                            type="text"
+                            placeholder="Username"
+                            name="username"
+                            value={this.state.username}
+                            onChange={this.handleChange}
+                        />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                        />
+                        <input
+                            type="password"
+                            placeholder="Confirm Password"
+                            name="passwordConfirm"
+                        />
+                        <button type="submit">Create Account</button>
+                    </form>
+                </div>
 			</div>
 		);
 	}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Cookies from "js-cookie";
 import { NavLink } from "react-router-dom";
+import NavBar from "../navigation/navBar";
 
 export default class LogIn extends Component {
 	constructor() {
@@ -28,7 +29,7 @@ export default class LogIn extends Component {
 				error: ""
 			});
 
-			fetch("http://127.0.0.1:5000/user/verification", {
+			fetch("https://deck-builder-api-swp.herokuapp.com/user/verification", {
 				method: "POST",
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify({
@@ -61,24 +62,29 @@ export default class LogIn extends Component {
 
 	render() {
 		return (
-			<div className="log-in-wrapper">
-				<form className="form-wrapper" onSubmit={this.handleLogin}>
-					<input type="text" placeholder="Username" name="username" />
-					<input
-						type="password"
-						placeholder="Password"
-						name="password"
-					/>
-					<button type="submit">Log In</button>
-				</form>
-				<div className="sign-up-button-wrapper">
-					<h3 className="sign-up-header">
-						Or if you don't have an account yet you can make one.
-					</h3>
-					<NavLink className="sign-up-button" to="/signup">
-						Sign Up
-					</NavLink>
-				</div>
+			<div className="page-wrapper">
+                <div className="nav-wrapper">
+                    <NavBar />
+                </div>
+                <div className="log-in-wrapper">
+                    <form className="form-wrapper" onSubmit={this.handleLogin}>
+                        <input type="text" placeholder="Username" name="username" />
+                        <input
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                        />
+                        <button type="submit">Log In</button>
+                    </form>
+                    <div className="sign-up-button-wrapper">
+                        <h3 className="sign-up-header">
+                            Or if you don't have an account yet you can make one.
+                        </h3>
+                        <NavLink className="sign-up-button" to="/signup">
+                            Sign Up
+                        </NavLink>
+                    </div>
+                </div>
 			</div>
 		);
 	}
