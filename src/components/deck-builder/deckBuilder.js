@@ -29,7 +29,7 @@ export default class DeckBuilder extends Component {
         const myToken = Cookies.get('user')
         this.setState({ token: myToken})
 
-		fetch(`https://deck-builder-api-swp.herokuapp.com/user/get/token/${myToken}`, {
+		fetch(`http://127.0.0.1:5000/user/get/token/${myToken}`, {
 			method: "GET",
 			headers: {
 				"content-type": "application/json"
@@ -90,7 +90,7 @@ export default class DeckBuilder extends Component {
 
 	handleSaveDeck() {
         console.log(this.state.user_id, this.state.cards, this.state.commander)
-		fetch("https://deck-builder-api-swp.herokuapp.com/deck/add", {
+		fetch("http://127.0.0.1:5000/deck/add", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json"
@@ -144,12 +144,12 @@ export default class DeckBuilder extends Component {
 	render() {
 		return (
 			<div className="deck-builder-wrapper">
-				<h2>Deck Builder</h2>
 				<div className="nav-wrapper">
+                    <h2>Deck Builder</h2>
 					<NavBar />
 				</div>
-				<button onClick={this.handleSaveDeck}>Save Deck</button>
 				<div className="card-search-wrapper">
+                    <button onClick={this.handleSaveDeck}>Save Deck</button>
 					<form onSubmit={this.handleSearch} className="search-form">
 						<input type="text" name="searchInput" />
 						<button type="submit">Search Cards</button>
@@ -158,19 +158,6 @@ export default class DeckBuilder extends Component {
 				
 				<div className="error-wrapper">{this.state.error}</div>
 				<div className="current-deck-wrapper">
-					<div className="commander-display-wrapper">
-						{this.state.commander ? (
-							<img
-								src={`${this.state.commander.image_uris.normal}`}
-								name="commander-image"
-							/>
-						) : (
-							<div>Commander will be displayed here.</div>
-						)}
-					</div>
-					<div className="cards-display-wrapper">
-                        {this.state.currentDeck}
-					</div>
                     <div className="result-wrapper">
                         {this.state.card ? (
                             <div className="search-result-wrapper">
@@ -198,6 +185,23 @@ export default class DeckBuilder extends Component {
                             <div>Results will appear here.</div>
                         )}
 				    </div>
+					<div className="commander-display-wrapper">
+						{this.state.commander ? (
+                            <div className="commander-wrapper">
+                                <div>Commander:</div>
+                                <img
+                                    src={`${this.state.commander.image_uris.normal}`}
+                                    name="commander-image"
+                                />
+                            </div>
+						) : (
+							<div>Commander will be displayed here.</div>
+						)}
+					</div>
+					<div className="cards-display-wrapper">
+                        {this.state.currentDeck}
+					</div>
+                    
 				</div>
 			</div>
 		);

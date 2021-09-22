@@ -65,7 +65,7 @@ export default class SignUp extends Component {
 				error: ""
 			});
 
-			fetch("https://deck-builder-api-swp.herokuapp.com/user/add", {
+			fetch("http://127.0.0.1:5000/user/add", {
 				method: "POST",
 				headers: { "content-type": "application/json" },
 				body: JSON.stringify({

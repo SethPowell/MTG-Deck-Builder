@@ -2,6 +2,10 @@ import React, { Component } from "react";
 
 import NavBar from "./navigation/navBar";
 
+import Icons from "./helpers/icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default class Home extends Component {
 	constructor(props) {
 		super(props);
@@ -18,17 +22,11 @@ export default class Home extends Component {
 	}
 
 	componentDidMount() {
-		// this.setState({
-		// 	loading: false
-		// });
 	}
 
 	handleSearch(event) {
-		console.log(
-			`https://api.scryfall.com/cards/search/${encodeURI(
-				this.state.searchInput
-			)}`
-		);
+        event.preventDefault()
+
 		let url = `https://api.scryfall.com/cards/named?exact=${encodeURI(
 			`!${this.state.searchInput}`
 		)}&pretty=true`;
@@ -73,12 +71,14 @@ export default class Home extends Component {
 						Welcome to Leak's Deck Builder for Magic the Gathering *
 					</h2>
 					<div className="search-wrapper">
-						<form>
+						<form onSubmit={this.handleSearch}>
 							<input type="text" onChange={this.handleChange} />
+                            <button type="submit" >
+							    <FontAwesomeIcon icon="search" />
+						    </button>
 						</form>
-						<button type="submit" onClick={this.handleSearch}>
-							Search Cards
-						</button>
+						
+                        <h4>{this.state.error}</h4>
 					</div>
 					<div className="result-wrapper">
 						{this.state.card ? (
@@ -95,10 +95,10 @@ export default class Home extends Component {
 							<div>Results will appear here.</div>
 						)}
 					</div>
-					<div className="popular-cards-wrapper">
+					{/* <div className="popular-cards-wrapper">
 						the three most common cards in all decks in the db
 						*excluding basics* will go here
-					</div>
+					</div> */}
 					<h6>
 						* Not endorsed by, sponsored by, or in any way
 						affiliated with wizards of the coast

@@ -1,4 +1,13 @@
 body {
 	margin: 0px;
 	font-family: "Poppins", sans-serif;
+    background-color: rgb(197, 226, 223);
+}
+
+input {
+    background-color: transparent;
+
+    &:hover {
+        background-color: rgba(197, 226, 223, 0.61);
+    }
 }

@@ -9,9 +9,17 @@ button {
 	align-content: center;
 }
 
+.nav-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .card-search-wrapper {
-    margin-top: -2.5vw;
 	height: 38px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 
 	.search-form {
 		height: 100%;

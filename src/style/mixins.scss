@@ -1,6 +1,6 @@
 @mixin button-styles {
     color: black;
-	background-color: white;
+	background-color: transparent;
 	width: 90px;
 	border: 1px solid black;
 	border-radius: 3px;
@@ -26,3 +26,4 @@
 		}
 	}
 }
+

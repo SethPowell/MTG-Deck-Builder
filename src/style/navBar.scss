@@ -3,7 +3,7 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	width: 100%;
+	width: 30%;
 	height: 100%;
 	padding: 1px;
     padding-right: 0px;
@@ -12,32 +12,6 @@
     margin-right: 0px;
 
 	border: 1px solid black;
-
-	.search-bar-wrapper {
-		height: 100%;
-
-		form {
-			height: 58px;
-			margin: 0px;
-			padding: 0px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			input {
-				height: 58px;
-				margin: 0px;
-			}
-
-			button {
-				height: 63px;
-				border-bottom: none;
-				border-top: none;
-				border-radius: 0%;
-				font-size: 2em;
-			}
-		}
-	}
 
 	button {
 		@include button-styles;

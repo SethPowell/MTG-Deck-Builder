@@ -39,7 +39,7 @@ export default class NavBar extends Component {
 	render() {
 		return (
 			<div className="nav-bar-wrapper">
-				<div className="search-bar-wrapper">
+				{/* <div className="search-bar-wrapper">
 					<form>
 						<input
 							type="text"
@@ -50,7 +50,7 @@ export default class NavBar extends Component {
 							<FontAwesomeIcon icon="search" />
 						</button>
 					</form>
-				</div>
+				</div> */}
 				<div className="buttons-wrapper">
 					<div className="left-buttons">
 						<NavLink to="/allDecks" className="navlink">
