@@ -12,6 +12,7 @@ import Home from "./home";
 import AllDecks from "./browse-pages/allDecks";
 import SignUp from "./login-pages/signUp";
 import DeckPage from "./browse-pages/deckPage"
+import NavBar from "./navigation/navBar";
 
 export default class App extends Component {
 	constructor(props) {
