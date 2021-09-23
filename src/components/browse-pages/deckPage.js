@@ -1,4 +1,3 @@
-import { response } from "express";
 import React,{ Component } from "react"
 
 export default class DeckPage extends Component {
@@ -14,12 +13,15 @@ export default class DeckPage extends Component {
             deck: [],
             commander_uri: ""
         }
+
+        this.getCommanderImg =this.getCommanderImg.bind(this)
+        this.renderCardsImg =this.renderCards.bind(this)
     }
 
     componentDidMount() {
         const handler = async () => {
-            const deck = await getDeck()
-            const cards = await this.getCommanderImg()
+            await getDeck()
+            this.getCommanderImg()
             this.renderCards()
         }
 
