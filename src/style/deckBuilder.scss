@@ -11,6 +11,19 @@
         margin: 1vw;
     }
 
+    .add-buttons-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        button {
+            width: 11vw;
+            height: 8vh;
+            
+        }
+    }
+
     .nav-wrapper {
         display: flex;
         flex-direction: row;
@@ -42,7 +55,7 @@
             button {
                 width: 15vw;
                 height: 7vh;
-                font-size: 1.1em;
+                font-size: 1em;
             }
         }
     }

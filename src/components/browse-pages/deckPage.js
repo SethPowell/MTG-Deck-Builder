@@ -43,7 +43,7 @@ export default class DeckPage extends Component {
         .then(response => response.json())
         .then(data => {
             commander=data.commander
-            cards=data.cards
+            cards.push(data.cards)
         })
 
         return ([commander, cards])
