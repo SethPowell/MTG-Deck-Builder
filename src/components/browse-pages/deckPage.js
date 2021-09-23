@@ -33,7 +33,7 @@ export default class DeckPage extends Component {
     }
 
     getDeck() {
-        fetch(`https://deck-builder-api-swp.herokuapp.com/deck/get/${user_id}/${id}`, {
+        fetch(`https://deck-builder-api-swp.herokuapp.com/deck/get/${props.user_id}/${props.id}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json"
@@ -68,6 +68,9 @@ export default class DeckPage extends Component {
     render() {
         return (
             <div className="page-wrapper">
+                <div className="nav-wrapper">
+                    <NavBar />
+                </div>
                 <div className="commander-wrapper">
                     <img src={this.state.commander_uri} alt="Commander Img" />
                 </div>
