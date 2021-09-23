@@ -3,6 +3,10 @@
         margin-left:2vw;
     }
 
+    button {
+        @include button-styles
+    }
+
     .nav-links-wrapper {
         a { 
             @include button-styles;

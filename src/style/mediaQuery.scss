@@ -1,0 +1,159 @@
+// Deck Builder Media Query
+@media (max-width: 700px) {
+    .deck-builder-wrapper {
+    img {
+        height: 35vh;
+    }
+
+    button {
+        @include button-styles;
+        display: block;
+        height: 37px;
+        align-content: center;
+        margin: 1vw;
+    }
+
+    .nav-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 1vh;
+    }
+
+    .card-search-wrapper {
+        height: 38px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        .search-form {
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            input {
+                height: 32px;
+            }
+        }
+    }
+
+    .current-deck-wrapper {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10vh;
+        text-align: center;
+    }
+
+    .cards-display-wrapper {
+        height: 100%;
+    }
+    }
+}
+
+// Log In Media Query
+@media (max-width: 700px) {
+    .log-in-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 10vh;
+
+        .form-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            input{
+                width: 65vw;
+                height: 10vh;
+                font-size: 1.5em;
+                margin: 3vh;
+            }
+
+            button {
+                width: 35vw;
+                height: 13vh;
+                font-size: 1.5em;
+            }
+        }
+
+        .sign-up-button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .sign-up-button {
+                @include button-styles;
+                text-decoration: none;
+                color: black;
+                padding:2vh;
+                text-align: center;
+            }
+        }
+    }
+}
+
+// Sign Up Media Query
+@media (max-width: 700px) {
+    .page-wrapper {
+        width: 100%;
+        .nav-wrapper {
+            margin: 0px;
+            padding: 0px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sign-up-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 10vh;
+
+            .sign-up-form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                input{
+                    width: 65vw;
+                    height: 10vh;
+                    font-size: 1.5em;
+                    margin: 3vh;
+                }
+
+                button {
+                    width: 65vw;
+                    height: 10vh;
+                    font-size: 1.5em;
+                }
+            }
+
+            .sign-up-button-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                .sign-up-button {
+                    @include button-styles;
+                    text-decoration: none;
+                    color: black;
+                    padding:2vh;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

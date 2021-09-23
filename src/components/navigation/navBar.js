@@ -39,24 +39,13 @@ export default class NavBar extends Component {
 	render() {
 		return (
 			<div className="nav-bar-wrapper">
-				{/* <div className="search-bar-wrapper">
-					<form>
-						<input
-							type="text"
-							placeholder="Search"
-							className="search-bar"
-						/>
-						<button type="submit">
-							<FontAwesomeIcon icon="search" />
-						</button>
-					</form>
-				</div> */}
+				
 				<div className="buttons-wrapper">
-					<div className="left-buttons">
-						<NavLink to="/allDecks" className="navlink">
-							All Decks
-						</NavLink>
-					</div>
+                    <div className="user-buttons">
+                        <NavLink to="/" className="navlink">
+                            <FontAwesomeIcon icon="home" />
+                        </NavLink>
+                    </div>
 					<div className="user-buttons">
 						<NavLink
 							to={this.state.user ? "/account" : "/login"}
@@ -66,15 +55,15 @@ export default class NavBar extends Component {
 						</NavLink>
 					</div>
                     <div className="user-buttons">
-                        <NavLink to="/" className="navlink">
-                            <FontAwesomeIcon icon="home" />
-                        </NavLink>
-                    </div>
-                    <div className="user-buttons">
                         <NavLink to="/deckBuilder" className="navlink">
                             <FontAwesomeIcon icon="edit" />
                         </NavLink>
                     </div>
+                    <div className="left-buttons">
+						<NavLink to="/allDecks" className="navlink">
+							All Decks
+						</NavLink>
+					</div>
 				</div>
 			</div>
 		);

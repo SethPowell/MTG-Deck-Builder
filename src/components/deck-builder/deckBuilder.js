@@ -148,7 +148,6 @@ export default class DeckBuilder extends Component {
 					<NavBar />
 				</div>
 				<div className="card-search-wrapper">
-                    <button onClick={this.handleSaveDeck}>Save Deck</button>
 					<form onSubmit={this.handleSearch} className="search-form">
 						<input type="text" name="searchInput" />
 						<button type="submit">Search Cards</button>
@@ -200,7 +199,7 @@ export default class DeckBuilder extends Component {
 					<div className="cards-display-wrapper">
                         {this.state.currentDeck}
 					</div>
-                    
+                    <button onClick={this.handleSaveDeck}>Save Deck</button>
 				</div>
 			</div>
 		);
