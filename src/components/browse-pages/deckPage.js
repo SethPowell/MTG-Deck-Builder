@@ -15,55 +15,58 @@ export default class DeckPage extends Component {
             commander_uri: "",
         }
 
-        // this.getCommanderImg =this.getCommanderImg.bind(this)
-        // this.renderCardsImg =this.renderCards.bind(this)
-        // this.getDeck = this.getDeck.bind(this)
+        this.getCommanderImg =this.getCommanderImg.bind(this)
+        this.renderCardsImg =this.renderCards.bind(this)
+        this.getDeck = this.getDeck.bind(this)
+        this.handler = this.handler.bind(this)
     }
 
     componentDidMount() {
-        console.log(this.props)
-        const handler = async () => {
-            const response1 = await getDeck()
-            const setCmdImg = getCommanderImg(response1[0])
-            const setCardImg = renderCards(response1[1])
-        }
-        
-        const getDeck = () => {
-            fetch(`https://deck-builder-api-swp.herokuapp.com/deck/get/${this.state.user_id}/${this.state.id}`, {
-                method: "GET",
-                headers: {
-                    "content-type": "application/json"
-                }
-            }).then(response => response.json())
-                .then(data => this.setState({
-                    commander: data.commander,
-                    cards: data.cards
-                }))
-                .catch(error => this.setState({error: "It seems we couldn't find that deck in our database"}))
+        this.handler()
+    }
 
-            return ([this.state.commander, this.state.cards])
-        }
+    handler = async () => {
+        const response = await this.getDeck()
+        this.getCommanderImg(response[0])
+        this.renderCards(response[1])
+    }
 
-        const getCommanderImg = (commander) => {
-            fetch(`https://api.scryfall.com/cards/named?exact=${encodeURI(`!${commander}`)}&pretty=true`, {
-                method: "GET",
-                headers: {"Content-type": "application/json"}
-            }).then(response => response.json())
-            .then(data => this.setState({commander_uri: data.image_uris.normal}))
-            .catch(error => this.setState({error: "It seems we couldn't find that commander"}))
-        }
-
-        const renderCards = (cards) => {
-            for (card of cards) {
-                this.setState({
-                    card_id: this.state.card_id + 1
-                })
-
-                this.state.deck.push(<h3 id={this.state.card_id}>{card}</h3>)
+    getDeck = async () => {
+        let commander =""
+        let cards = []
+        await fetch(`https://deck-builder-api-swp.herokuapp.com/deck/get/${this.state.user_id}/${this.state.id}`, {
+            method: "GET",
+            headers: {
+                "content-type": "application/json"
             }
-        }
+        })
+        .then(response => response.json())
+        .then(data => {
+            commander=data.commander
+            cards=data.cards
+        })
 
-        handler()
+        return ([commander, cards])
+    }
+
+    getCommanderImg(commander) {
+        fetch(`https://api.scryfall.com/cards/named?exact=${encodeURI(`!${commander}`)}&pretty=true`, {
+            method: "GET",
+            headers: {"Content-type": "application/json"}
+        }).then(response => response.json())
+        .then(data => this.setState({commander_uri: data.image_uris.normal}))
+        .catch(error => this.setState({error: "It seems we couldn't find that commander"}))
+    }
+
+    renderCards(cards) {
+        let deck =[]
+        for (let card of cards) {
+            deck.push(<h3>{card}</h3>)
+        }
+        console.log(cards)
+        this.setState({
+            deck
+        })
     }
 
     // getDeck() {

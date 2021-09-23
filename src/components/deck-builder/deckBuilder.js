@@ -198,8 +198,9 @@ export default class DeckBuilder extends Component {
 					</div>
 					<div className="cards-display-wrapper">
                         {this.state.currentDeck}
+                        <button onClick={this.handleSaveDeck}>Save Deck</button>
 					</div>
-                    <button onClick={this.handleSaveDeck}>Save Deck</button>
+                    
 				</div>
 			</div>
 		);
