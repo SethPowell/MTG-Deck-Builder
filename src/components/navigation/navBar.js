@@ -54,10 +54,14 @@ export default class NavBar extends Component {
 							<FontAwesomeIcon icon="user" />
 						</NavLink>
 					</div>
-                    <div className="user-buttons"  visibility={this.state.user ? 'visible' : 'hidden' }>
-                        <NavLink to="/deckBuilder" className="navlink">
+                    <div className="user-buttons" >
+                        {this.state.user ? 
+                        <NavLink to="/deckBuilder" className="navlink" >
                             <FontAwesomeIcon icon="edit" />
                         </NavLink>
+                        :
+                        <FontAwesomeIcon className="deck-builder-icon" icon="edit" />
+                        }
                     </div>
                     <div className="left-buttons">
 						<NavLink to="/allDecks" className="navlink">
