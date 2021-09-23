@@ -44,7 +44,7 @@ export default class AllDecks extends Component {
             .then(response => response.json())
             .then(data => this.setState({username: `${data.username}`}))
             let response1 = `${deck.commander}`
-            return <h3>{response1}</h3>
+            return <NavLink to="/deckPage" user_id={deck.user_id} id={deck.id}>{response1}</NavLink>
         }
 
         const getDecks = (decks) => {
