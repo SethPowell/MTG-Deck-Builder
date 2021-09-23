@@ -54,7 +54,7 @@ export default class App extends Component {
 							<Route
 								exact
 								path="/alldecks"
-								component={AllDecks}
+								render={(props) => <AllDecks {...props} />}
 							/>
 							<Route exact path="/signup" component={SignUp} />
                             <Route

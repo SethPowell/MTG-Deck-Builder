@@ -6,8 +6,8 @@ export default class DeckPage extends Component {
         super(props);
 
         this.state={
-            user_id: props.user_id,
-            id: props.id,
+            user_id: this.props.user_id,
+            id: this.props.id,
             commander: "",
             cards: [],
             card_id: 0,
@@ -27,14 +27,12 @@ export default class DeckPage extends Component {
             this.getCommanderImg()
             this.renderCards()
         }
-
         
-
         handler()
     }
 
     getDeck() {
-        fetch(`https://deck-builder-api-swp.herokuapp.com/deck/get/${props.user_id}/${props.id}`, {
+        fetch(`https://deck-builder-api-swp.herokuapp.com/deck/get/${this.state.user_id}/${this.state.id}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json"
@@ -52,7 +50,7 @@ export default class DeckPage extends Component {
             method: "GET",
             headers: {"Content-type": "application/json"}
         }).then(response => response.json())
-        .then(data => this.setState({commander_uri: data.omage_uris.normal}))
+        .then(data => this.setState({commander_uri: data.image_uris.normal}))
         .catch(error => this.setState({error: "It seems we couldn't find that commander"}))
     }
 
