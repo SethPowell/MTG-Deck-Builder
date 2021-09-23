@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import axios from "axios";
 
 import Icons from "./helpers/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,8 +10,7 @@ import Account from "./account-pages/account";
 import Home from "./home";
 import AllDecks from "./browse-pages/allDecks";
 import SignUp from "./login-pages/signUp";
-import DeckPage from "./browse-pages/deckPage"
-import NavBar from "./navigation/navBar";
+import DeckPage from "./browse-pages/deckPage";
 
 export default class App extends Component {
 	constructor(props) {
@@ -21,9 +19,19 @@ export default class App extends Component {
 		Icons();
 
 		this.state = {
-			loggedInStatus: "NOT_LOGGED_IN"
+			loggedInStatus: "NOT_LOGGED_IN",
+            user_id: 0,
+            id: 0
 		};
+        this.handleDeck = this.handleDeck.bind(this)
 	}
+
+    handleDeck(user_id, id) {
+        this.setState({
+            user_id,
+            id
+        })
+    }
 
 	render() {
 		return (
@@ -60,6 +68,11 @@ export default class App extends Component {
                             <Route
                                 exact
                                 path="/deckPage"
+                                render={(props) => <DeckPage {...props} />}
+                            />
+                            <Route
+                                exact
+                                path="/deckPage/:slug"
                                 render={(props) => <DeckPage {...props} />}
                             />
 						</Switch>
