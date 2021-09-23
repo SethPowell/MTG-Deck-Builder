@@ -16,12 +16,13 @@ export default class DeckPage extends Component {
 
         this.getCommanderImg =this.getCommanderImg.bind(this)
         this.renderCardsImg =this.renderCards.bind(this)
+        this.getDeck = this.getDeck.bind(this)
     }
 
     componentDidMount() {
         console.log(this.props)
         const handler = async () => {
-            await getDeck()
+            await this.getDeck()
             this.getCommanderImg()
             this.renderCards()
         }
