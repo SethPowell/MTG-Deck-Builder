@@ -19,6 +19,7 @@ export default class DeckPage extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props)
         const handler = async () => {
             await getDeck()
             this.getCommanderImg()

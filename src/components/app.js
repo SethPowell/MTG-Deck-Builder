@@ -11,6 +11,7 @@ import Account from "./account-pages/account";
 import Home from "./home";
 import AllDecks from "./browse-pages/allDecks";
 import SignUp from "./login-pages/signUp";
+import DeckPage from "./browse-pages/deckPage"
 
 export default class App extends Component {
 	constructor(props) {
@@ -58,7 +59,7 @@ export default class App extends Component {
                             <Route
                                 exact
                                 path="/deckPage"
-                                redner={(props) => <DeckPage {...props} />}
+                                render={(props) => <DeckPage {...props} />}
                             />
 						</Switch>
 					</div>
