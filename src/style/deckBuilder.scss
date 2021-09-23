@@ -3,6 +3,10 @@
         height: 35vh;
     }
 
+    .error-wrapper {
+        margin-top: 55px;
+    }
+
     button {
         @include button-styles;
         display: block;
@@ -18,9 +22,9 @@
         justify-content: center;
 
         button {
-            width: 11vw;
-            height: 8vh;
-            
+            width: 100px;
+            height: 40px;
+
         }
     }
 
@@ -53,7 +57,7 @@
             }
 
             button {
-                width: 15vw;
+                width: 20vw;
                 height: 7vh;
                 font-size: 1em;
             }
